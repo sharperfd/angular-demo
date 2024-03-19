@@ -4,6 +4,7 @@ import { AuthService } from '@services/auth.service';
 import { StorageService } from '@services/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '@dialogs/error-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,16 +20,18 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private storageService: StorageService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   onSubmit(): void {
     const { username, password } = this.form;
+    console.log(username, password);
 
     this.authService.login(username, password).subscribe({
       next: (data) => {
         this.storageService.saveUser(data);
-        location.reload();
+        this.router.navigate(['home']);
       },
       error: (err) => {
         console.error(err);

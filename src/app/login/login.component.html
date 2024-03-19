@@ -9,13 +9,14 @@
             class="img-fluid mx-auto d-block mb-4"
             alt="Profile Image"
           />
-          <form name="form" novalidate (ngSubmit)="onSubmit()">
+        <form name="form" #f="ngForm" novalidate (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="username">Username</label>
               <input
                 type="text"
                 class="form-control"
                 name="username"
+                [(ngModel)]="form.username"
                 required
               />
             </div>
@@ -25,6 +26,7 @@
                 type="password"
                 class="form-control"
                 name="password"
+                [(ngModel)]="form.password"
                 required
                 minlength="6"
               />
