@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-
-import { AuthService } from '@services/auth.service';
-import { StorageService } from '@services/storage.service';
+import { AuthService } from '@app/services/auth.service';
+import { StorageService } from '@app/services/storage.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '@dialogs/error-dialog.component';
+import { ErrorDialogComponent } from '@app/error-dialog/error-dialog.component';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -22,16 +23,19 @@ export class LoginComponent {
     private storageService: StorageService,
     private dialog: MatDialog,
     private router: Router
-  ) {}
+  ) {
+    if (this.storageService.isLoggedIn()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   onSubmit(): void {
     const { username, password } = this.form;
-    console.log(username, password);
 
     this.authService.login(username, password).subscribe({
       next: (data) => {
         this.storageService.saveUser(data);
-        this.router.navigate(['home']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.error(err);

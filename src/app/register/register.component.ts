@@ -4,11 +4,13 @@ import { AuthService } from '@app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '@app/error-dialog/error-dialog.component';
 import { StorageService } from '@services/storage.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  providers: [HttpClientModule]
 })
 export class RegisterComponent {
   constructor(

@@ -1,8 +1,12 @@
-
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { InjectionToken } from '@angular/core';
-import { ErrorDialogComponent } from './error-dialog.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ErrorDialogComponent } from './error-dialog.component';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { InjectionToken } from '@angular/core';
 
 describe('ErrorDialogComponent', () => {
   let component: ErrorDialogComponent;

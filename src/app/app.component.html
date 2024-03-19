@@ -1,9 +1,15 @@
-<div class="navbar">
-  <a routerLink="/home" routerLinkActive="active">Home</a>
-  <a routerLink="/register" routerLinkActive="active">Register</a>
-  <a routerLink="/login" routerLinkActive="active">Login</a>
-</div>
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3 mb-4">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="/register">Register</a>
+        <a class="nav-item nav-link" href="/login">Login</a>
+        <a class="nav-item nav-link" href="/user">Users</a>
+        <button class="btn btn-link nav-item nav-link">Logout</button>
+    </div>
+  </nav>
 
-<div class="home-container">
-  <router-outlet></router-outlet>
-</div>
+  <!-- main app container -->
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
