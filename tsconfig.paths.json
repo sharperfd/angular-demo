@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@services/*": [
+        "src/app/services/*"
+      ],
+      "@dialogs/*": [
+        "src/app/error-dialog/*"
+      ]
+    }
+  }
+}

@@ -16,6 +16,8 @@
       }
     ],
     "button-type": "off",
-    "no-protocol-relative-urls": "off"
+    "no-protocol-relative-urls": "off",
+    "typescript-config/consistent-casing": "off",
+    "typescript-config/strict": "off"
   }
 }
