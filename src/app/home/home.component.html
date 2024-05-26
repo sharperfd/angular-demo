@@ -1,13 +1,17 @@
-<div *ngIf="userData">
-  <h2>User Authentication Data</h2>
-  <ul>
-    <li><strong>Username:</strong> {{ userData.username }}</li>
-    <li><strong>Email:</strong> {{ userData.email }}</li>
-    <li><strong>First Name:</strong> {{ userData.firstName }}</li>
-    <li><strong>Last Name:</strong> {{ userData.lastName }}</li>
-    <li><strong>Gender:</strong> {{ userData.gender }}</li>
-    <li><strong>ID:</strong> {{ userData.id }}</li>
-    <!-- Add more data as needed -->
-  </ul>
-  <img *ngIf="userData.image" [src]="userData.image" alt="User Image">
+<div class="question-list" *ngIf="questionCategoryList">
+  <h2>Question List</h2>
+  <div class="mt-4">
+    <ul class="category-list">
+      <li
+        *ngFor="let category of questionCategoryList; let i = index"
+        class="category-item"
+        (click)="goToCategoryDetail(category.questionCategoryId)"
+        (keyup.enter)="goToCategoryDetail(category.questionCategoryId)"
+        tabindex="0"
+      >
+        <span class="index">{{ i + 1 }}.</span>
+        <span class="title">{{ category.title }}</span>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -4,8 +4,7 @@ import { StorageService } from '@app/services/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '@app/error-dialog/error-dialog.component';
 import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { NgFor } from '@angular/common';
+
 
 @Component({
   selector: 'app-login',

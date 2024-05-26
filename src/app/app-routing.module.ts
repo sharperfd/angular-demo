@@ -4,18 +4,25 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './auth.guard';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'category/:id', component: CategoryComponent },
+    ],
+  },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}

@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
-const AUTH_API = 'https://dummyjson.com';
+const AUTH_API = 'https://training-homework.calllab.net';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -11,7 +12,12 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private client: HttpClient) {}
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(
+    this.isAuthenticated()
+  );
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  private readonly USER_AUTH_KEY = 'user-auth';
+  constructor(private client: HttpClient, private router: Router) {}
 
   register(username: string, email: string, password: string): Observable<any> {
     return this.client.post(
@@ -27,31 +33,18 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     return this.client.post(
-      AUTH_API + '/auth/login',
-      { username, password },
+      AUTH_API + '/v1/login',
+      { username: username, password: password },
       httpOptions
     );
   }
+
+  logout(): void {
+    sessionStorage.removeItem(this.USER_AUTH_KEY);
+    this.router.navigate(['/login']);
+  }
+
+  public isAuthenticated(): boolean {
+    return sessionStorage.getItem(this.USER_AUTH_KEY) !== null;
+  }
 }
-
-
-
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
-// const AUTH_API = 'https://demo-backend-nodejs.vercel.app';
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-// };
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   constructor(private client: HttpClient) {}
-
-//   register(username: string, email: string, password: string): Observable<any> {
-//     return this.client.get(AUTH_API + '/');
-//   }
-// }
-

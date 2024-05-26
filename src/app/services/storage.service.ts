@@ -20,6 +20,24 @@ export class StorageService {
     return user ? JSON.parse(user) : null;
   }
 
+  public getUserFullName(): string {
+    const userAuthData = sessionStorage.getItem(StorageService.USER_KEY);
+    if (userAuthData) {
+      const userAuth = JSON.parse(userAuthData);
+      return userAuth.data.fullName;
+    }
+    return '';
+  }
+
+  public getToken(): string {
+    const userAuthData = sessionStorage.getItem(StorageService.USER_KEY);
+    if (userAuthData) {
+      const userAuth = JSON.parse(userAuthData);
+      return userAuth.data.accessToken;
+    }
+    return '';
+  }
+
   public isLoggedIn(): boolean {
     return sessionStorage.getItem(StorageService.USER_KEY) !== null;
   }
