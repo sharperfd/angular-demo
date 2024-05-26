@@ -4,7 +4,7 @@
     <p class="timer-text">{{ formatTime(countdown) }}</p>
   </div>
   <div class="question mb-3">
-    <h3>{{ category.questionInfo[currentQuestionIndex].title }}</h3>
+    <h3>ข้อที่ {{currentQuestionIndex + 1}}&nbsp;&nbsp;{{ category.questionInfo[currentQuestionIndex].title }}</h3>
     <ul>
       <li
         *ngFor="

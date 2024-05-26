@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QuestionService } from '@services/question.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -22,14 +23,22 @@ export class HomeComponent {
         this.questionCategoryList = res.data;
       },
       (error) => {
-        console.error('Error fetching question category list:', error);
+        console.error('getQuestionCategoryList failed:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'เกิดข้อผิดพลาด\n กรุณาลองใหม่อีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/']);
+          }
+        });
       }
     );
   }
 
   goToCategoryDetail(id: string): void {
-    // Assuming your category object has an id property
-    console.log(id);
     this.router.navigate(['/category', id]);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionCategory } from '@app/models/category';
 import { QuestionService } from '@services/question.service';
@@ -39,19 +39,26 @@ export class CategoryComponent {
   ngOnInit(): void {
     // Get the category ID from the route parameters
     const categoryId = this.route.snapshot.paramMap.get('id') ?? '';
-
-    this.startCountdown();
-
     // Fetch the category details based on the ID
     this.questionService.getQuestionCategoryById(categoryId).subscribe(
       (res) => {
         this.category = res.data;
         this.totalQuestions = this.category?.questionInfo?.length ?? 0;
         this.initializeCheckboxStates();
-        console.log('Question Category:', this.category);
+        this.startCountdown();
       },
       (error) => {
         console.error('Error fetching question category:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'เกิดข้อผิดพลาด\n กรุณาลองใหม่อีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/']);
+          }
+        });
       }
     );
   }

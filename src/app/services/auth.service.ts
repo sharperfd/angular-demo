@@ -19,18 +19,6 @@ export class AuthService {
   private readonly USER_AUTH_KEY = 'user-auth';
   constructor(private client: HttpClient, private router: Router) {}
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.client.post(
-      AUTH_API + '/auth/signup',
-      {
-        username,
-        email,
-        password,
-      },
-      httpOptions
-    );
-  }
-
   login(username: string, password: string): Observable<any> {
     return this.client.post(
       AUTH_API + '/v1/login',

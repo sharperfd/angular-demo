@@ -1,11 +1,29 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark px-3 mb-4">
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-  </div>
-  <div class="navbar-nav ms-auto">
-    <a *ngIf="!isAuthenticated()" class="nav-item nav-link" routerLink="/login">Login</a>
-    <span *ngIf="isAuthenticated()" class="navbar-text text-light me-3">Hello, {{ getUserFullName() }}</span>
-    <button *ngIf="isAuthenticated()" class="btn btn-link nav-item nav-link" (click)="onLogout()">Logout</button>
+  <div class="container-fluid">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/">Home</a>
+    </div>
+    <div class="navbar-brand ms-auto">
+      <span class="rainbow-text">Math Quiz Game</span>
+    </div>
+    <div class="navbar-nav ms-auto">
+      <a
+        *ngIf="!isAuthenticated()"
+        class="nav-item nav-link"
+        routerLink="/login"
+        >Login</a
+      >
+      <span *ngIf="isAuthenticated()" class="navbar-text text-light me-3"
+        >Hello, {{ getUserFullName() }}</span
+      >
+      <button
+        *ngIf="isAuthenticated()"
+        class="btn btn-link nav-item nav-link"
+        (click)="onLogout()"
+      >
+        Logout
+      </button>
+    </div>
   </div>
 </nav>
 

@@ -30,3 +30,40 @@
   color: white;
   border-radius: 5px;
 }
+
+/* Define keyframes for rainbow effect */
+@keyframes rainbow {
+  0% {
+    color: red;
+  }
+
+  16.666% {
+    color: orange;
+  }
+
+  33.333% {
+    color: yellow;
+  }
+
+  50% {
+    color: green;
+  }
+
+  66.666% {
+    color: blue;
+  }
+
+  83.333% {
+    color: indigo;
+  }
+
+  100% {
+    color: violet;
+  }
+}
+
+/* Apply rainbow animation to rainbow-text class */
+.rainbow-text {
+  animation: rainbow 5s infinite;
+  /* Adjust duration and timing as needed */
+}
