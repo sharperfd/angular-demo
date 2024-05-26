@@ -12,7 +12,7 @@ import { interval, Subscription } from 'rxjs';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent {
-  countdown = 3600;
+  countdown = 900;
   countdownSubscription!: Subscription;
   category: QuestionCategory = {
     questionCategoryId: '',
