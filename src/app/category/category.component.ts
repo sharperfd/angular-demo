@@ -35,7 +35,6 @@ export class CategoryComponent {
     private questionService: QuestionService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     // Get the category ID from the route parameters
     const categoryId = this.route.snapshot.paramMap.get('id') ?? '';
@@ -44,6 +43,9 @@ export class CategoryComponent {
       (res) => {
         this.category = res.data;
         this.totalQuestions = this.category?.questionInfo?.length ?? 0;
+        if (this.category?.timeLimitOfMinuteUnit) {
+          this.countdown = this.category.timeLimitOfMinuteUnit * 60;
+        }
         this.initializeCheckboxStates();
         this.startCountdown();
       },
